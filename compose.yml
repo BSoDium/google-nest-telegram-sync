@@ -4,4 +4,4 @@ services:
     container_name: nest-telegram-sync
     restart: unless-stopped
     env_file:
-      - .env=
+      - .env
