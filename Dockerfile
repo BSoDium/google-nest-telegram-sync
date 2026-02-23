@@ -14,6 +14,8 @@ FROM base AS production
 
 COPY . .
 
+ENV PYTHONUNBUFFERED=1
+
 RUN useradd --create-home --shell /bin/bash appuser
 USER appuser
 
