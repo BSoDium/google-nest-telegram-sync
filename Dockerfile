@@ -1,4 +1,4 @@
-FROM python:3.13-slim
+FROM python:3.14-slim
 
 WORKDIR /app
 
@@ -7,7 +7,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-RUN useradd --create-home --shell /bin/bash runner
-USER runner
+RUN useradd --create-home --shell /bin/bash appuser
+USER appuser
 
 CMD ["python3", "main.py"]
