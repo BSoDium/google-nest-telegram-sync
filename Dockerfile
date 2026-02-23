@@ -9,18 +9,6 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-### Production stage
-FROM base AS production
-
-COPY . .
-
-ENV PYTHONUNBUFFERED=1
-
-RUN useradd --create-home --shell /bin/bash appuser
-USER appuser
-
-CMD ["python3", "main.py"]
-
 ### Development stage (used by devcontainer)
 FROM base AS dev
 
@@ -35,3 +23,15 @@ USER devuser
 
 # Source is bind-mounted by the devcontainer, no COPY needed
 CMD ["sleep", "infinity"]
+
+### Production stage
+FROM base AS production
+
+COPY . .
+
+ENV PYTHONUNBUFFERED=1
+
+RUN useradd --create-home --shell /bin/bash appuser
+USER appuser
+
+CMD ["python3", "main.py"]
