@@ -1,0 +1,29 @@
+{
+  "name": "Google Nest Telegram Sync",
+  "build": {
+    "context": "..",
+    "dockerfile": "../Dockerfile",
+    "target": "dev"
+  },
+  "workspaceFolder": "/app",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/app,type=bind,consistency=cached",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.debugpy"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python"
+      }
+    }
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": false
+    }
+  },
+  "forwardPorts": [],
+  "postCreateCommand": "pip install --no-cache-dir -r requirements.txt",
+  "remoteUser": "devuser"
+}

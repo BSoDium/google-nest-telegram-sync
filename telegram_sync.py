@@ -1,5 +1,5 @@
 from nest_api import NestDoorbellDevice
-from tools import logger
+from tools import logger, get_video_metadata
 from models import CameraEvent
 
 from io import BytesIO
@@ -41,10 +41,16 @@ class TelegramEventsSync(object):
             video_data = nest_device.download_camera_event(camera_event_obj)
             video_io = BytesIO(video_data)
 
+            metadata = get_video_metadata(video_data)
+            logger.debug(f"Video metadata: {metadata}")
+
             event_local_time = camera_event_obj.start_time.astimezone(pytz.timezone(self._timezone))
             video_media = InputMediaVideo(
                 media=video_io, 
-                caption=f"{nest_device.device_name} - {event_local_time.strftime(self.TELEGRAM_TIME_FORMAT)}"
+                caption=f"{nest_device.device_name} - {event_local_time.strftime(self.TELEGRAM_TIME_FORMAT)}",
+                width=metadata["width"],
+                height=metadata["height"],
+                duration=metadata["duration"],
             )
             
             await self._telegram_bot.send_media_group(

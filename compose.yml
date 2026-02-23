@@ -1,5 +1,9 @@
 services:
   nest-telegram-sync:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
     image: ghcr.io/bsodium/google-nest-telegram-sync:latest
     container_name: nest-telegram-sync
     restart: unless-stopped
