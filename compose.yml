@@ -1,0 +1,7 @@
+services:
+  nest-telegram-sync:
+    build: .
+    container_name: nest-telegram-sync
+    restart: unless-stopped
+    env_file:
+      - .env
