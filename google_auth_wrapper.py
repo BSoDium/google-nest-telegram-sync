@@ -67,8 +67,6 @@ class GLocalAuthenticationTokensMultiService(
 
 class GoogleConnection(object):
 
-    NAME = "Google"
-
     NEST_SCOPE = "oauth2:https://www.googleapis.com/auth/nest-account"
 
     def __init__(self, master_token, username, password="FAKE_PASSWORD"):

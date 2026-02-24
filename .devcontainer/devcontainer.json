@@ -7,6 +7,9 @@
   },
   "workspaceFolder": "/app",
   "workspaceMount": "source=${localWorkspaceFolder},target=/app,type=bind,consistency=cached",
+  "mounts": [
+    "source=nest-dev-data,target=/data,type=volume"
+  ],
   "customizations": {
     "vscode": {
       "extensions": [

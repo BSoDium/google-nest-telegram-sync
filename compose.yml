@@ -9,3 +9,8 @@ services:
     restart: unless-stopped
     env_file:
       - .env
+    volumes:
+      - nest-data:/data
+
+volumes:
+  nest-data:
